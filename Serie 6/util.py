@@ -47,7 +47,7 @@ def kfold_eval(model: Any, X: pd.DataFrame, y: pd.DataFrame, k: int, average: An
     :return: accuracy, precision, recall, f1
     """
 
-    kf = KFold(n_splits=k, random_state=224)
+    kf = KFold(n_splits=k)
 
     accuracy = np.empty(kf.n_splits)
     precision = np.empty(kf.n_splits)
@@ -85,8 +85,8 @@ def pca_eval(model: Any, X: pd.DataFrame, y: pd.DataFrame, k: int, c: int, avera
 
     :return: accuracy, precision, recall, f1
     """
-    kf = KFold(n_splits=k, random_state=224)
-    pca = PCA(n_components=c, random_state=224)
+    kf = KFold(n_splits=k)
+    pca = PCA(n_components=c)
     # noinspection PyTypeChecker
     fit: PCA = pca.fit(X)
 
@@ -130,7 +130,7 @@ def rfe_eval(model: Any, X: pd.DataFrame, y: pd.DataFrame, k: int, f: int, avera
 
     :return: accuracy, precision, recall, f1
     """
-    kf = KFold(n_splits=k, random_state=224)
+    kf = KFold(n_splits=k)
     rfe = RFE(model, n_features_to_select=f)
 
     accuracy = np.empty(kf.n_splits)
@@ -177,7 +177,7 @@ def kbest_eval(model: Any, X: pd.DataFrame, y: pd.DataFrame, k: int, kb: int, sc
 
     :return: accuracy, precision, recall, f1
     """
-    kf = KFold(n_splits=k, random_state=224)
+    kf = KFold(n_splits=k)
     kbest = SelectKBest(score_func=score_func, k=kb)
 
     accuracy = np.empty(kf.n_splits)
