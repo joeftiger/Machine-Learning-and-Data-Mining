@@ -7,7 +7,7 @@ from sklearn.model_selection import KFold
 
 
 def evaluate(model: Any, X_train: pd.DataFrame, X_test: pd.DataFrame, y_train: pd.DataFrame, y_test: pd.DataFrame,
-         average: Any = 'binary', zero_division: Any = 'warn') -> (float, float, float, float):
+             average: Any = 'binary', zero_division: Any = 'warn') -> (float, float, float, float):
     """
     Evaluates a model on a training and test set.
     :param model: The model to evaluate
@@ -54,7 +54,7 @@ def kfold_eval(model: Any, X: pd.DataFrame, y: pd.DataFrame, k: int, average: An
 
     i = 0
     for train_index, test_index in kf.split(X):
-        accuracy[i], precision[i], recall[i], f1[i] = eval(
+        accuracy[i], precision[i], recall[i], f1[i] = evaluate(
             model,
             X.iloc[train_index],
             X.iloc[test_index],
